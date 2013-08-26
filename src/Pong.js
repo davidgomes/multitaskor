@@ -42,9 +42,9 @@ Pong = (function() {
     
     update: function(dt) {
       /* Player movement */
-      if (isDown("right")) {
+      if (isDown("right") || isDown("d")) {
         this.player.x += this.player.speed * dt;
-      } else if (isDown("left")) {
+      } else if (isDown("left") || isDown("a")) {
         this.player.x -= this.player.speed * dt;
       }
 
