@@ -1,0 +1,37 @@
+<!DOCTYPE html><html>
+  <head>
+    <title>Multitaskor - LD 27</title>
+    <meta charset="utf-8">
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+  </head>
+
+  <body style="margin: 0px;">
+    <canvas id="canvas" width="640" height="400">
+      You need to use a modern browser to play this game.
+
+      Try Firefox or Chromium.
+    </canvas>
+
+    <p style="font-family: pixel;text-align: center;font-size: 15px; color: black;">"Multitaskor" by <a href="https://www.twitter.com/munchor">@munchor</a>, made in 48 hours for <a href="https://www.ludumdare.com">Ludum Dare</a>.</p>
+
+    <audio id="stagechange" src="res/sfx/stage_change.ogg"></audio>
+    <audio id="beep" src="res/sfx/beep.ogg"></audio>
+  </body>
+
+  <!-- Include Pentagine -->
+  <script src="lib/pentagine.js" type="text/javascript"></script>
+
+  <!-- Include game classes -->
+  <script src="src/TenSecondsTimer.js" type="text/javascript"></script>
+
+  <script src="src/Bombs.js" type="text/javascript"></script>
+  <script src="src/Tunnel.js" type="text/javascript"></script>
+  <script src="src/Pong.js" type="text/javascript"></script>
+  <script src="src/Jumpity.js" type="text/javascript"></script>
+
+  <script src="src/TitleScreenState.js" type="text/javascript"></script>
+  <script src="src/PlayState.js" type="text/javascript"></script>
+  <script src="src/GameOverState.js" type="text/javascript"></script>
+
+  <script src="src/main.js" type="text/javascript"></script>
+</html>

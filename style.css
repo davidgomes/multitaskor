@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "pixel";
+  src: url("res/fonts/pixelfont.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0px;
+  background-color: #282828;
+  color: white;
+}
+
+header {
+  width: 800px;
+  color: #aaaaaa;
+}
+
+a:link {
+  color: #FFF;
+}
+
+a:visited {
+  color: gray;
+}
+
+canvas {
+  border: #000 1px solid;
+  background: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 26px;
+  display: block;
+  font-family: pixel;
+}
