@@ -1,6 +1,8 @@
 Multitaskor
 ===========
 
+![Multitaskor](http://www.ludumdare.com/compo/wp-content/compo2/273708/7348-shot0.png "Multitaskor")
+
 About
 -----
 Multitaskor is a simple game made in 48 hours for the Ludum Dare 27. The theme for this edition of Ludum Dare was "10 Seconds". As so, Multitaskor features several mini arcade games and the player will play each stage for 10 seconds only. Further on, a stage will consist of two games at the very time using a split-screen feature.
