@@ -11,7 +11,8 @@ var canvas = document.getElementById("canvas");
 canvas.width = 640;
 canvas.height = 400;
 
-var score = -1;
+var startScore = -1;
+var score = startScore;
 
 desiredFPS = 60;
 pauseKey = "";

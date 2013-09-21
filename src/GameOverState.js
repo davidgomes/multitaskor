@@ -14,7 +14,7 @@ function GameOverState() {
 
   this.update = function() {
     if ((isDown("return") || isDown("space")) && this.canRestart) {
-      score = -1;
+      score = startScore;
       document.getElementById("beep").volume = 1;
       switchState(new PlayState());
     }
