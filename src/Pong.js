@@ -8,11 +8,11 @@ Pong = (function() {
 
     this.live = live;
 
-    this.leftRight = new Sprite("res/img/left_right.png", 0, 0);
+    this.leftRight = new Pentagine.Sprite(penta, "res/img/left_right.png", 0, 0);
     this.leftRight.width = 160;
     this.leftRight.height = 100;
     this.leftRight.alpha = 0.3;
-    
+
     this.reloadVariables();
   }
 
@@ -21,7 +21,7 @@ Pong = (function() {
       this.player = {x: this.width / 2 - 30, y: this.height - 20,
                      width: 60, height: 8, speed: 500};
 
-      this.ball = new Sprite("res/img/ball.png", this.width / 2 - 16,
+      this.ball = new Pentagine.Sprite(penta, "res/img/ball.png", this.width / 2 - 16,
                              this.y + 30);
 
       this.ball.radius = 8;
@@ -32,19 +32,19 @@ Pong = (function() {
       } else {
         this.ball.vx = getRandomInt(50, 200);
       }
-      
+
       this.ball.vy = getRandomInt(180, 200);
     },
 
     goHard: function() {
       this.player.width = 30;
     },
-    
+
     update: function(dt) {
       /* Player movement */
-      if (isDown("right") || isDown("d")) {
+      if (penta.isDown("right") || penta.isDown("d")) {
         this.player.x += this.player.speed * dt;
-      } else if (isDown("left") || isDown("a")) {
+      } else if (penta.isDown("left") || penta.isDown("a")) {
         this.player.x -= this.player.speed * dt;
       }
 
@@ -76,7 +76,7 @@ Pong = (function() {
       }
 
       if (this.ball.y > this.height) {
-        switchState(new GameOverState());
+        penta.switchState(new GameOverState());
       }
 
       this.ball.x += this.ball.vx * dt;
@@ -89,9 +89,9 @@ Pong = (function() {
       this.leftRight.draw();
 
       /* Draw player and ball */
-      drawRectangle(this.x + this.player.x, this.y + this.player.y,
+      penta.drawRectangle(this.x + this.player.x, this.y + this.player.y,
                     this.player.width, this.player.height, "black");
-      
+
       this.ball.x += this.x;
       this.ball.y += this.y;
       this.ball.draw();

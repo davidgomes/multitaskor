@@ -1,22 +1,22 @@
 function TitleScreenState() {
   this.setup = function() {
-  }
+  };
 
   this.update = function() {
-    if (isDown("return") || isDown("space")) {
-      switchState(new PlayState());
+    if (penta.isDown("return") || penta.isDown("space")) {
+      penta.switchState(new PlayState());
     }
-  }
+  };
 
   this.draw = function() {
-    clearCanvas();
+    penta.clearCanvas();
 
-    drawRectangle(0, 0, 640, 400, "lightgray");
-    
-    currentFont = "70px pixel";
-    drawString("Multitaskor", 320, 200, "black", "center");
+    penta.drawRectangle(0, 0, 640, 400, "lightgray");
 
-    currentFont = "20px pixel"
-    drawString("Press <Space> to start", 320, 270, "black", "center");
-  }
+    penta.currentFont = "70px pixel";
+    penta.drawString("Multitaskor", 320, 200, "black", "center");
+
+    penta.currentFont = "20px pixel";
+    penta.drawString("Press <Space> to start", 320, 270, "black", "center");
+  };
 }

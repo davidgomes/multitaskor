@@ -8,7 +8,7 @@ Jumpity = (function() {
 
     this.live = live;
 
-    this.spaceBar = new Sprite("res/img/space_bar.png", 0, 0);
+    this.spaceBar = new Pentagine.Sprite(penta, "res/img/space_bar.png", 0, 0);
     this.spaceBar.width = 160;
     this.spaceBar.height = 100;
     this.spaceBar.alpha = 0.3;
@@ -24,7 +24,7 @@ Jumpity = (function() {
                      width: 16, height: 16, speed: 300,
                      vy: 0, yAcc: 0, canJump: true};
 
-      this.triangles = new SpriteList();
+      this.triangles = new Pentagine.SpriteList();
       this.initialTriangleSpeed = 300;
       this.difficulty = 80;
       this.minimumDistance = this.width / 2;
@@ -35,9 +35,9 @@ Jumpity = (function() {
       this.difficulty = 40;
       this.minimumDistance = this.width - 100;
     },
-    
+
     update: function(dt) {
-      if (isDown("space") && this.player.canJump) {
+      if (penta.isDown("space") && this.player.canJump) {
         if (this.player.vy < -500) {
           this.player.canJump = false;
         }
@@ -74,7 +74,7 @@ Jumpity = (function() {
       if (getRandomInt(0, this.difficulty) == 1) {
         var lastTriangle = this.triangles.sprites[this.triangles.sprites.length - 1];
         var canAddNew;
-        
+
         if (lastTriangle) {
           if (lastTriangle.x < this.minimumDistance) {
             canAddNew = true;
@@ -86,11 +86,11 @@ Jumpity = (function() {
         }
 
         if (canAddNew) {
-          var newTriangle = new Sprite("res/img/triangle.png",
-                                       this.width,
-                                       this.height - this.bottomHeight - 16);
+          var newTriangle = new Pentagine.Sprite(penta, "res/img/triangle.png",
+                                                 this.width,
+                                                 this.height - this.bottomHeight - 16);
           newTriangle.speed = this.initialTriangleSpeed;
-          
+
           this.triangles.push(newTriangle);
         }
       }
@@ -107,7 +107,7 @@ Jumpity = (function() {
              this.triangles.sprites[i].x + 16 <= this.player.x + 16) &&
             this.triangles.sprites[i].y >= this.player.y &&
             this.triangles.sprites[i].y <= this.player.y + 16) {
-          switchState(new GameOverState());
+          penta.switchState(new GameOverState());
         }
       }
     },
@@ -118,11 +118,11 @@ Jumpity = (function() {
       this.spaceBar.draw();
 
       /* Draw player */
-      drawRectangle(this.x + this.player.x, this.y + this.player.y,
-                    this.player.width, this.player.height, "#F00");
+      penta.drawRectangle(this.x + this.player.x, this.y + this.player.y,
+                          this.player.width, this.player.height, "#F00");
 
-      drawRectangle(0, this.y + this.height - this.bottomHeight, this.width,
-                    this.bottomHeight, "black");
+      penta.drawRectangle(0, this.y + this.height - this.bottomHeight, this.width,
+                          this.bottomHeight, "black");
 
       for (var i = 0; i < this.triangles.sprites.length; i++) {
         if (this.triangles.sprites[i]) {

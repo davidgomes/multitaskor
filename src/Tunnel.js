@@ -8,11 +8,11 @@ Tunnel = (function() {
 
     this.live = live;
 
-    this.upDown = new Sprite("res/img/up_down.png", 0, 0);
+    this.upDown = new Pentagine.Sprite(penta, "res/img/up_down.png", 0, 0);
     this.upDown.width = 100;
     this.upDown.height = 160;
     this.upDown.alpha = 0.3;
-    
+
     this.reloadVariables();
   }
 
@@ -22,13 +22,13 @@ Tunnel = (function() {
                      width: 8, height: 8, speed: 300};
 
       this.vertical = false;
-      
+
       this.walls = [];
       this.walls[this.width - 1] = 20;
 
       for (var i = this.width - 2; i >= 0; i--) {
         var lastWall = this.walls[i + 1];
-        
+
         if (lastWall < 8) {
           this.walls[i] = lastWall + 2;
         } else if (lastWall > 34) {
@@ -50,13 +50,13 @@ Tunnel = (function() {
       this.initialBlockSpeed = 16;
       this.player.speed = 500;
     },
-    
+
     update: function(dt) {
-      if (isDown("up") || isDown("w")) {
+      if (penta.isDown("up") || penta.isDown("w")) {
         this.player.y -= this.player.speed * dt;
       }
 
-      if (isDown("down") || isDown("s")) {
+      if (penta.isDown("down") || penta.isDown("s")) {
         this.player.y += this.player.speed * dt;
       }
 
@@ -70,24 +70,18 @@ Tunnel = (function() {
         } else {
           newBlock.speed = this.initialBlockSpeed;
         }
-        
+
         this.blocks.push(newBlock);
       }
 
       for (var i = 0; i < this.blocks.length; i++) {
         this.blocks[i].x -= this.blocks[i].speed;
 
-        /*if (this.player.x >= this.blocks[i].x &&
-            this.player.x <= this.blocks[i].x + this.blocks[i].width &&
-            this.player.y >= this.blocks[i].y &&
-            this.player.y <= this.blocks[i].y + this.blocks[i].height) {
-            */
-
         if (this.player.x <= this.blocks[i].x + this.blocks[i].width &&
             this.blocks[i].x <= this.player.x + this.player.width &&
             this.player.y <= this.blocks[i].y + this.blocks[i].height &&
             this.blocks[i].y <= this.player.y + this.player.height) {
-          switchState(new GameOverState());
+          penta.switchState(new GameOverState());
         }
       }
 
@@ -115,7 +109,7 @@ Tunnel = (function() {
       var playerWall = this.walls[this.player.x + this.player.width];
       if (this.player.y < playerWall ||
           this.player.y > this.height - playerWall) {
-        switchState(new GameOverState());
+        penta.switchState(new GameOverState());
       }
     },
 
@@ -123,17 +117,17 @@ Tunnel = (function() {
       this.upDown.x = this.x + this.width / 2 - this.upDown.width / 2;
       this.upDown.y = this.y + this.height / 2 - this.upDown.height / 2;
       this.upDown.draw();
-      
+
       /* Draw walls */
       for (var i = 0; i < this.walls.length; i++) {
-        drawRectangle(this.x + i, this.y + 0, 1, this.walls[i], "gray");
-        drawRectangle(this.x + i, this.y + this.height - this.walls[i],
-                      1, this.walls[i], "gray");
+        penta.drawRectangle(this.x + i, this.y + 0, 1, this.walls[i], "gray");
+        penta.drawRectangle(this.x + i, this.y + this.height - this.walls[i],
+                            1, this.walls[i], "gray");
       }
 
       /* Draw blocks */
       for (var i = 0; i < this.blocks.length; i++) {
-        drawRectangle(this.x + this.blocks[i].x, this.y + this.blocks[i].y,
+        penta.drawRectangle(this.x + this.blocks[i].x, this.y + this.blocks[i].y,
                       this.blocks[i].width, this.blocks[i].height, "#000");
       }
 
@@ -141,9 +135,9 @@ Tunnel = (function() {
       if (this.vertical) {
         this.player.x = 20;
       }
-      
-      drawRectangle(this.x + this.player.x, this.y + this.player.y,
-                    this.player.width, this.player.height, "#F00");
+
+      penta.drawRectangle(this.x + this.player.x, this.y + this.player.y,
+                          this.player.width, this.player.height, "#F00");
     }
   };
 

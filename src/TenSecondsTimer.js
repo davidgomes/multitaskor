@@ -8,7 +8,7 @@ TenSecondsTimer = (function() {
     },
 
     callOneSecondTimer: function() {
-      if (this.time == 0) return;
+      if (this.time === 0) return;
 
       var self = this;
 
@@ -16,7 +16,7 @@ TenSecondsTimer = (function() {
         if (self.time < 5 && self.time != 1) {
           document.getElementById("beep").play();
         }
-        
+
         self.time -= 1;
 
         self.callOneSecondTimer();
@@ -24,8 +24,8 @@ TenSecondsTimer = (function() {
     },
 
     draw: function() {
-      currentFont = "20px pixel";
-      drawString(this.time, 635, 25, "black", "right");
+      penta.currentFont = "20px pixel";
+      penta.drawString(this.time, 635, 25, "black", "right");
     }
   };
 

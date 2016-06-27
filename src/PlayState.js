@@ -40,7 +40,7 @@ function PlayState() {
       var fullScreenDifficulty = 5;
 
       if (score > 10) fullScreenDifficulty = 4;
-      
+
       if (getRandomInt(0, fullScreenDifficulty) == 0) { // Full screen game
         for (var i = 0; i < this.games.length; i++) {
           this.games[i].live = false;
@@ -162,9 +162,9 @@ function PlayState() {
   }
 
   this.draw = function() {
-    clearCanvas();
+    penta.clearCanvas();
 
-    drawRectangle(0, 0, 640, 400, "lightgray");
+    penta.drawRectangle(0, 0, 640, 400, "lightgray");
 
     var nLives = 0;
     for (var i = 0; i < this.games.length; i++) {
@@ -176,9 +176,9 @@ function PlayState() {
 
     if (nLives > 1) {
       if (this.games[0].vertical) {
-        drawRectangle(this.width / 2, 0, 1, this.height, "black");
+        penta.drawRectangle(this.width / 2, 0, 1, this.height, "black");
       } else {
-        drawRectangle(0, this.height / 2, this.width, 1, "black");
+        penta.drawRectangle(0, this.height / 2, this.width, 1, "black");
       }
     }
 

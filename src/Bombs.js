@@ -8,7 +8,7 @@ Bombs = (function() {
 
     this.live = live;
 
-    this.leftRight = new Sprite("res/img/left_right.png", 0, 0);
+    this.leftRight = new Pentagine.Sprite(penta, "res/img/left_right.png", 0, 0);
     this.leftRight.width = 160;
     this.leftRight.height = 100;
     this.leftRight.alpha = 0.3;
@@ -18,7 +18,7 @@ Bombs = (function() {
 
   constructor.prototype = {
     reloadVariables: function() {
-      this.drops = new SpriteList();
+      this.drops = new Pentagine.SpriteList();
       this.player = {x: this.width / 2 - 8, y: this.height - 20,
                      width: 16, height: 16, speed: 500}
 
@@ -32,12 +32,12 @@ Bombs = (function() {
     goHard: function() {
       this.difficulty = 1;
     },
-    
+
     update: function(dt) {
       /* Player movement */
-      if (isDown("right") || isDown("d")) {
+      if (penta.isDown("right") || penta.isDown("d")) {
         this.player.x += this.player.speed * dt;
-      } else if (isDown("left") || isDown("a")) {
+      } else if (penta.isDown("left") || penta.isDown("a")) {
         this.player.x -= this.player.speed * dt;
       }
 
@@ -50,8 +50,8 @@ Bombs = (function() {
 
       /* Add bombs here and there */
       if (getRandomInt(0, this.difficulty) == 1) {
-        var newDrop = new Sprite("res/img/bomb.png",
-                                 getRandomInt(0, this.width / 16) * 16, 2);
+        var newDrop = new Pentagine.Sprite(penta, "res/img/bomb.png",
+                                           getRandomInt(0, this.width / 16) * 16, 2);
 
         newDrop.vy = 0;
 
@@ -60,10 +60,10 @@ Bombs = (function() {
 
       /* Add bombs on top of the player */
       if (getRandomInt(0, this.difficulty + 35) == 1) {
-        var newDrop = new Sprite("res/img/bomb.png",
-                                 getRandomInt(this.player.x / 16 - 3,
-                                              this.player.x / 16 + 3) * 16,
-                                 2);
+        var newDrop = new Pentagine.Sprite(penta, "res/img/bomb.png",
+                                           getRandomInt(this.player.x / 16 - 3,
+                                                        this.player.x / 16 + 3) * 16,
+                                           2);
 
         newDrop.vy = 0;
 
@@ -89,7 +89,7 @@ Bombs = (function() {
                this.drops.sprites[i].x + 16 <= this.player.x + 16) &&
               this.drops.sprites[i].y >= this.player.y &&
               this.drops.sprites[i].y <= this.player.y + 16) {
-            switchState(new GameOverState());
+            penta.switchState(new GameOverState());
           }
         }
       }
@@ -116,8 +116,8 @@ Bombs = (function() {
         }
       }
 
-      drawRectangle(this.x + this.player.x, this.y + this.player.y,
-                    this.player.width, this.player.height, "#000");
+      penta.drawRectangle(this.x + this.player.x, this.y + this.player.y,
+                          this.player.width, this.player.height, "#000");
     }
   };
 
